@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView,CreateView
 from .models import Post
 
 def Home(request):
@@ -14,11 +14,11 @@ class PostListView(ListView):
       context_object_name = "posts"
       ordering =['-post_date']
 
-class PostListView(ListView):
+class PostDetailView(DetailView):
       model =Post
-      template_name = 'blog/home.html'
-      context_object_name = "posts"
-      ordering =['-post_date']
+class PostCreateView(CreateView):
+      model =Post
+      fields =['title', 'content']
 def About(request):
         return render(request, 'blog/about.html', {'title' : ' about'})
 
